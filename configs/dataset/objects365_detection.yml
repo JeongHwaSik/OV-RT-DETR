@@ -1,0 +1,35 @@
+task: detection
+
+num_classes: 365
+
+remap_mscoco_category: True
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: Objects365Detection
+    img_folder: ./dataset/objects365_v1/train/
+    ann_file: ./dataset/objects365_v1/annotations/objects365_train.json
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  batch_size: 4
+  num_workers: 4
+  drop_last: True
+
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: Objects365Detection
+    img_folder: ./dataset/objects365_v1/val/
+    ann_file: ./dataset/objects365_v1/annotations/objects365_val.json
+    transforms:
+      type: Compose
+      ops: ~
+
+  shuffle: False
+  batch_size: 8
+  num_workers: 4
+  drop_last: False
